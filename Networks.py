@@ -96,7 +96,7 @@ class Net(nn.Layer):
         assert 0<=alpha<=1
         style_feats = self.encode_with_intermediate(style)
         content_feat = self.encode(content)
-        t = adain(content_feat, style_feats[-1])
+        t = adain(style_feats[-1], content_feat)
         t = alpha * t + (1 - alpha) * content_feat
 
         g_t = self.decoder(t)
